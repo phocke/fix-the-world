@@ -6,7 +6,7 @@ class User
   field :email,               :type => String
   field :encrypted_password,  :type => String
   field :password_salt,       :type => String
-  
+  field :admin,               :type => Boolean  
   validates_presence_of   :email, :name
   validates_uniqueness_of :email
   validates_format_of     :email, :with => %r{.+@.+\..+}
