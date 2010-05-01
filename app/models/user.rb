@@ -28,6 +28,10 @@ class User
   def authenticated?(password)
     encrypted_password == encrypt(password)
   end
+
+  def self.to_sym
+    User.inspect
+  end
   
   protected
     
