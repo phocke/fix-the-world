@@ -2,7 +2,7 @@
   <%= button_to 'Logout', {:controller => "user_sessions", :action => "destroy"}, :method => :delete %>
 <% end %>
 
-<% form_tag '/session' do %>
+<%= form_tag '/session' do %>
   <p>
     <label for="email">Email</label><br/>
     <input type="text" name="email" value="" id="email">
