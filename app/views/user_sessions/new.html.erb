@@ -1,0 +1,15 @@
+<% if logged_in? %>
+  <%= button_to 'Logout', {:controller => "user_sessions", :action => "destroy"}, :method => :delete %>
+<% end %>
+
+<% form_tag '/session' do %>
+  <p>
+    <label for="email">Email</label><br/>
+    <input type="text" name="email" value="" id="email">
+  </p>
+  <p>
+    <label for="password">Password</label><br/>
+    <input type="password" name="password" value="" id="password">
+  </p>
+  <p><input type="submit" name="commit" value="Log in" ></p>
+<% end %>
