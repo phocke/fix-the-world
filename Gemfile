@@ -6,15 +6,16 @@ gem "haml",     "3.0.0.rc.2"
 gem "compass",  "0.10.0.rc4"
 gem "inherited_resources"
 
-#group :test do
-    #gem "rspec-rails", "2.0.0.beta.8"
-    #gem "capybara"
-    #gem 'database_cleaner'
-    #gem 'cucumber-rails', :git => 'git://github.com/aslakhellesoy/cucumber-rails.git'
-    #gem 'test-unit' #https://rspec.lighthouseapp.com/projects/16211/tickets/292
-    #gem 'machinist_mongo', :require => 'machinist/mongoid'
-    #gem 'faker'
-#end
+group :test do
+    gem "rspec-rails", "2.0.0.beta.8"
+    gem "capybara"
+    gem 'database_cleaner'
+    gem 'cucumber-rails', :git => 'git://github.com/aslakhellesoy/cucumber-rails.git'
+    gem 'test-unit' #https://rspec.lighthouseapp.com/projects/16211/tickets/292
+    gem 'machinist_mongo', :require => 'machinist/mongoid'
+    gem 'faker'
+end
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
