@@ -1,4 +1,5 @@
 require "faker"
+
 Factory.define :user do |f|
   f.name Faker::Name.name
   f.password "foobar"

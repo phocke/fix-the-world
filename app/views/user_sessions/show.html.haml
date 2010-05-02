@@ -1,6 +1,6 @@
 - if logged_in?
-  Logged in as:  
-  = current_user.email
+  Logged in as  
+  = current_user.name
 - else
   Logged out
   = link_to "Log in", new_session_path

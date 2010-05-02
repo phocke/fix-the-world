@@ -10,9 +10,6 @@ Feature: Login
       |hoooock@gmail.com       |przmekk   |false |butelka  |
       |sebcioz@gmail.com       |sebastian |true  |do_zucia |
       |super-sebcioz@gmail.com |seba      |false |guuuma   |
-    Given I am logged in with email "<email>" and password "<password>"
-    #When I visit new_session 
-    #And I fill password with "pajakk"
-    #And I fill email with "phocke@gmail.com"
-    
-    Then I should see "logged in as a" "<name>"
+    Given I am logged in with email "sebcioz@gmail.com" and password "do_zucia"
+    When I go to session 
+    Then I should see "Logged in as sebastian"
