@@ -5,6 +5,10 @@ TestApp::Application.routes.draw do |map|
   resource :session, :controller => "user_sessions"
   resources :posts
 
+  match "/signup" => "users#new", :as => :signup
+  match "/signin" => "user_sessions#new", :as => :signin
+  match "/signout" => "user_sessions#destroy", :as => :signout
+
   root :to => "posts#index"
   
   # The priority is based upon order of creation:

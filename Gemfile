@@ -19,4 +19,5 @@ group :test do
     gem "machinist_mongo", :require => "machinist/mongoid"
     gem "faker"
     gem "factory_girl", :git => "git://github.com/thoughtbot/factory_girl.git", :branch => "rails3"
+    #gem "pickle"
 end
