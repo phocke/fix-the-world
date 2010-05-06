@@ -1,2 +1,0 @@
-require 'sham'
-require 'faker'

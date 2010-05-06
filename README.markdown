@@ -5,7 +5,7 @@ this is just a simple app which is supposed to help with generating and implemen
 -  rails 3
 -  mongoid
 -  warden
--  tested with ruby 1.8.7 (1.9.1 spits ugly segfaults)
+-  tested with ruby 1.8.7 and 1.9.1
 -  haml+sass
 -  compass
 

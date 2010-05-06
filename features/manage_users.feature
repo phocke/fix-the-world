@@ -1,4 +1,4 @@
-Feature: Manage Users
+Feature: Manage users
   In order to manage user details
   As a security enthusiast
   I want to be able to sign up, sing in and sing out
@@ -16,7 +16,7 @@ Feature: Manage Users
 
   Scenario Outline: Sign in
     Given I have no users
-    And the following user records
+    And the following users exists:
       | email             | password |
       | bob@bob.com       | secret   |
       | admin@gmail.com   | secret   |
@@ -32,8 +32,8 @@ Feature: Manage Users
 
   Scenario: Sign out
     Given I have no users
-    And I have user "ala@ma.kota"
+    And I have user with email "ala@ma.kota"
     And I am signed in as "ala@ma.kota" with password "foobar"
-    When I sign out
+    When I go to the signout page
     And I go to the session page
     Then I should see "Signed out"

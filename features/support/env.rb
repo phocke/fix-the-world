@@ -22,6 +22,9 @@ Dir[File.join(File.dirname(__FILE__), 'spec', 'factories', '*.rb')].each do |f|
   require File.expand_path(f)
 end
 
+require "pickle"
+require "pickle/world"
+
 # Capybara defaults to XPath selectors rather than Webrat's default of CSS3. In
 # order to ease the transition to Capybara we set the default here. If you'd
 # prefer to use XPath just remove this line and adjust any selectors in your
@@ -56,10 +59,4 @@ Cucumber::Rails::World.use_transactional_fixtures = true
 # How to clean your database when transactions are turned off. See
 # http://github.com/bmabey/database_cleaner for more info.
 
-if defined?(ActiveRecord::Base)
-  begin
-    require 'database_cleaner'
-    DatabaseCleaner.strategy = :truncation
-  rescue LoadError => ignore_if_database_cleaner_not_present
-  end
-end
+DatabaseCleaner.strategy = :truncation

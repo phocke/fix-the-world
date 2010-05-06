@@ -7,6 +7,9 @@ class User
   field :encrypted_password,  :type => String
   field :password_salt,       :type => String
   field :admin,               :type => Boolean  
+
+  has_many_related :wishes
+
   validates_presence_of   :email, :name
   validates_uniqueness_of :email
   validates_format_of     :email, :with => %r{.+@.+\..+}
@@ -31,6 +34,14 @@ class User
 
   def self.to_sym
     User.inspect
+  end
+
+  def guest?
+    new_record?
+  end
+
+  def not_guest?
+    !guest?
   end
   
   protected

@@ -1,15 +1,15 @@
 TestApp::Application.routes.draw do |map|
+  resources :wishes
 
   resource :account, :controller => "users"
   resources :users
   resource :session, :controller => "user_sessions"
-  resources :posts
 
   match "/signup" => "users#new", :as => :signup
   match "/signin" => "user_sessions#new", :as => :signin
   match "/signout" => "user_sessions#destroy", :as => :signout
 
-  root :to => "posts#index"
+  root :to => "wishes#index"
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -65,5 +65,5 @@ TestApp::Application.routes.draw do |map|
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
-  # match ':controller(/:action(/:id(.:format)))'
+  match ':controller(/:action(/:id(.:format)))'
 end
