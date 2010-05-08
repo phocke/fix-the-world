@@ -15,4 +15,12 @@ module ApplicationHelper
   def javascript(*args)
     content_for(:head) { javascript_include_tag(*args) }
   end
+
+  def vote_char(wish)
+    if current_user && wish.voted_by?(current_user)
+      "-"
+    else
+      "+"
+    end
+  end
 end

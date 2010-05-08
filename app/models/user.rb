@@ -9,6 +9,7 @@ class User
   field :admin,               :type => Boolean  
 
   has_many_related :wishes
+  has_many_related :votes
 
   validates_presence_of   :email, :name
   validates_uniqueness_of :email

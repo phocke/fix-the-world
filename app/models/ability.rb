@@ -9,6 +9,7 @@ class Ability
     elsif user.not_guest?
       can :create, Wish
       can :update, Wish, :user => user
+      can :add_vote, Wish
     end
     can :read, Wish
   end

@@ -1,5 +1,7 @@
 TestApp::Application.routes.draw do |map|
-  resources :wishes
+  resources :wishes do   
+    get :add_vote, :on => :member   
+  end   
 
   resource :account, :controller => "users"
   resources :users
@@ -8,7 +10,6 @@ TestApp::Application.routes.draw do |map|
   match "/signup" => "users#new", :as => :signup
   match "/signin" => "user_sessions#new", :as => :signin
   match "/signout" => "user_sessions#destroy", :as => :signout
-
   root :to => "wishes#index"
   
   # The priority is based upon order of creation:

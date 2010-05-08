@@ -1,12 +1,8 @@
-Given /^I have no (\w+)$/ do |object|
-  object.classify.constantize.destroy_all
+Given /^I have no (.+)$/ do |objects|
+  objects.split(", ").each do |o|
+    o.classify.constantize.destroy_all
+  end
 end
-
-#Given /^the following (.+)$/ do |factory, table|
-  #table.hashes.each do |hash|
-    #Factory(factory.singularize, hash)
-  #end
-#end
 
 Given /^I have (\w+) with (.+)$/ do |object, data|
   hash = {}

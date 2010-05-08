@@ -14,7 +14,7 @@ this is just a simple app which is supposed to help with generating and implemen
 -  rspec
 -  capybara
 -  cucumber
--  machinist-mongo
+-  factory_girl
 -  faker
 
 ##deploying instructions

@@ -6,5 +6,10 @@ class Wish
   field :content, :type => String
 
   belongs_to_related :user
+  has_many_related :votes
+
+  def voted_by?(user)
+    Vote.find(:all, :conditions => {:user_id => user.id, :wish_id => self.id}).count > 0
+  end
 
 end

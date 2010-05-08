@@ -15,4 +15,17 @@ class WishesController < InheritedResources::Base
     end
   end
 
+  def add_vote
+    wish = Wish.find(params[:id])
+    vote = wish.votes.build(:user => current_user)
+
+    if vote.save
+      flash[:notice] = "Successfully added vote."
+    else
+      flash[:error] = "Don't cheat!"
+    end
+
+    redirect_to :back
+  end
+
 end
