@@ -11,7 +11,7 @@ class UserSessionsController < ApplicationController
     if logged_in?
       flash[:notice] = "Login successful!"
     
-      render :text => "OK :) Zalogowany jako #{current_user.inspect}"
+      render :text => "OK :) Zalogowany jako #{current_user.name}"
     end
   end
 
@@ -25,8 +25,6 @@ class UserSessionsController < ApplicationController
   
   def unauthenticated
     flash[:error] = "Incorrect email/password combination"
-    
-    render :text => "zle dane!"
-    return false
+    redirect_to :action=>:new
   end
 end

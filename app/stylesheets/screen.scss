@@ -26,21 +26,39 @@ body.bp {
 }
 
 form.bp {
-  @include blueprint-form; }
+  @include blueprint-form; 
+}
 
 // Page layout can be done using mixins applied to your semantic classes and IDs:
 body.two-col {
+
   #container {
-    @include container; }
+    @include container;
+    border: 1px solid red;
+  }
+
   #header, #footer {
-    @include column($blueprint_grid_columns); }
+    @include column($blueprint_grid_columns); 
+    border: 1px solid black;
+  }
+  
   #sidebar {
+    background-color: #ccc;
+    
     // One third of the grid columns, rounding down. With 24 cols, this is 8.
     $sidebar_columns: floor($blueprint_grid_columns / 3);
-    @include column($sidebar_columns); }
+    @include column($sidebar_columns); 
+  }
+  
   #content {
+    border: 1px solid green;
     // Two thirds of the grid columns, rounding up.
     // With 24 cols, this is 16.
-    $content_columns: ceil(2 * $blueprint_grid_columns / 3);
-    // true means it's the last column in the row
-    @include column($content_columns, true); } }
+    $content_columns: $blueprint_grid_columns ;
+    // true means it''s the last column in the row
+    @include column($content_columns, true); 
+  } 
+}
+
+
+    

@@ -1,5 +1,9 @@
 class WishesController < InheritedResources::Base
   load_and_authorize_resource
+  
+  def index
+    @wishes = Wish.paginate :page=>params[:page], :per_page=>10
+  end
 
   def new
     @wish = Wish.new

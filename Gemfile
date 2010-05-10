@@ -1,15 +1,16 @@
 source 'http://gemcutter.org'
 
 gem "rails",    "3.0.0.beta3"
-gem "bson_ext", "1.0"
-gem "mongoid", :git => "git://github.com/durran/mongoid.git"
+gem "bson_ext", "1.0" unless RUBY_VERSION == "1.8.7"
+gem "mongoid",  "2.0.0.beta4" #:git => "git://github.com/durran/mongoid.git"
 gem "haml",     "3.0.0.rc.2"
 gem "compass",  "0.10.0.rc4"
 gem "inherited_resources"
-gem "sqlite3-ruby", :require => "sqlite3"
+gem "ruby-mysql"
 gem "warden"
 gem "rails_warden"
 gem "cancan"
+gem "will_paginate"
 
 group :test do
     gem "rspec-rails", "2.0.0.beta.8"
