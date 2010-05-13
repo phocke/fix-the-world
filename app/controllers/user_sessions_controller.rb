@@ -9,7 +9,7 @@ class UserSessionsController < ApplicationController
     authenticate!
     
     if logged_in?
-      flash[:notice] = "Login successful!"
+      flash[:success] = "Login successful!"
     
       render :text => "OK :) Zalogowany jako #{current_user.name}"
     end
@@ -18,7 +18,7 @@ class UserSessionsController < ApplicationController
   def destroy
     logout
     
-    flash[:notice] = "Logout successful!"
+    flash[:success] = "Logout successful!"
 
     render :text => "wylogowano"
   end

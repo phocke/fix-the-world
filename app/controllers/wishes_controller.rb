@@ -1,4 +1,4 @@
-class WishesController < InheritedResources::Base
+class WishesController < ApplicationController
   load_and_authorize_resource
   
   def index
@@ -13,10 +13,32 @@ class WishesController < InheritedResources::Base
     @wish = current_user.wishes.build(params[:wish]) 
 
     if @wish.save
-      redirect_to @wish, :notice => "Wish was successfully created."
+      flash[:success] = "Wish was successfully created."
+      redirect_to @wish     
     else
       render :action => "new"
     end
+  end
+
+  def edit
+    @wish = Wish.find(params[:id])
+  end
+
+  def update
+    @wish = Wish.find(params[:id])
+    if @wish.update_attributes(params[:wish])
+      flash[:success] = "Wish was successfully updated."
+      redirect_to @wish 
+    else
+      render :action => "edit"
+    end
+  end
+  
+  def destroy
+    @wish = Wish.find(params[:id])
+    @wish.destroy
+    flash[:success] = "Wish destroyed"
+    redirect_to  wishes_path
   end
 
   def add_vote
@@ -24,12 +46,12 @@ class WishesController < InheritedResources::Base
     vote = wish.votes.build(:user => current_user)
 
     if vote.save
-      flash[:notice] = "Successfully added vote."
+      flash[:success] = "Successfully added vote."
     else
       flash[:error] = "Don't cheat!"
     end
 
-    redirect_to :back
+    redirect_to wish
   end
 
 end
