@@ -1,6 +1,6 @@
 // This import applies a global reset to any page that imports this stylesheet.
 @import "blueprint/reset";
-
+@import "blueprint/grid";
 // To configure blueprint, edit the partials/base.sass file.
 @import "partials/base";
 
@@ -11,7 +11,8 @@
 @import "blueprint/scaffolding";
 
 // To generate css equivalent to the blueprint css but with your configuration applied, uncomment:
-// +blueprint
+ 
+
 
 //Recommended Blueprint configuration with scoping and semantic layout:
 @include blueprint-scaffolding("body.bp");
@@ -21,6 +22,7 @@ body.bp {
   @include blueprint-utilities;
   @include blueprint-debug;
   @include blueprint-interaction;
+  @include blueprint-grid;
   // Remove the scaffolding when you're ready to start doing visual design.
   // Or leave it in if you're happy with how blueprint looks out-of-the-box
 }
@@ -30,34 +32,23 @@ form.bp {
 }
 
 // Page layout can be done using mixins applied to your semantic classes and IDs:
-body.two-col {
-
+body.bp {
   #container {
     @include container;
-    border: 1px solid red;
+    background: url(../images/grid.png) repeat;
+
+  }
+
+  #content {
+    $content_columns: $blueprint_grid_columns ;
+    @include column($content_columns, true); 
   }
 
   #header, #footer {
-    @include column($blueprint_grid_columns); 
-    border: 1px solid black;
+    @include column(24); 
   }
   
-  #sidebar {
-    background-color: #ccc;
-    
-    // One third of the grid columns, rounding down. With 24 cols, this is 8.
-    $sidebar_columns: floor($blueprint_grid_columns / 3);
-    @include column($sidebar_columns); 
-  }
   
-  #content {
-    border: 1px solid green;
-    // Two thirds of the grid columns, rounding up.
-    // With 24 cols, this is 16.
-    $content_columns: $blueprint_grid_columns ;
-    // true means it''s the last column in the row
-    @include column($content_columns, true); 
-  } 
 }
 
 

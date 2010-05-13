@@ -1,9 +1,9 @@
 !!! 5
 %html
+  -require 'faker'
   %head
-    %title
-      -require 'faker'
-      = (yield(:title) || "Fix the world")
+    -title("Fix the word")
+    %title= @content_for_title
     %meta{"http-equiv"=>"Content-Type", :content=>"text/html; charset=utf-8"}/
     = csrf_meta_tag
     = stylesheet_link_tag 'screen.css', :media => 'screen, projection'
@@ -14,27 +14,41 @@
     = javascript_include_tag 'http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js'
     = javascript_include_tag 'rails.js'
     = yield :javascripts
-  %body.bp.two-col
+  %body.bp.showgrid
     #container
       #header
         %h1.logo This is us
-        %span.tagline this is very exciting site which will eventually fix the word
         %ul.menu
           %li home
           %li wisz
           %li fizzy-disz
-      #content
+        %hr
+        %span.tagline this is very exciting site which will eventually fix the word
+      #content.large
+        - flash[:error], flash[:notice], flash[:success] = Faker::Lorem.sentence(rand(20)), Faker::Lorem.sentence(rand(20)), Faker::Lorem.sentence(rand(20))
         - flash.each do |name, msg|
-          = content_tag :div, msg, :id => "flash_#{name}"
+          = content_tag :div, msg, :id => "flash_#{name}", :class => name
         - if show_title?
           %h1= yield(:title)
         = yield
       #footer
-        -4.times do
-          .sections
+        -4.times do |i|
+          %div{:class=>["span-6", "#{ i==3 ? 'last' : ''}"]}
             %h4= Faker::Lorem.words(2).join(" ")
             %ul
               -(rand(3)+2).times do
                 %li= Faker::Lorem.words(1)[0]
-        #branding
+        #branding.clear
+          this site is brought to you by amazing team from 
+          =link_to "Future Simple", "http://futuresimple.pl"
+          %span Przemo
+          &amp;
+          %span Zuchaman :)
         #copyrights
+          Copyright © 2009 - 
+          = Time.now.year
+          All rights reserved
+        #links
+          - 5.times do |i|
+            = link_to Faker::Lorem.words(1)[0], "#"
+            = i!=4 ? "|" : ""
