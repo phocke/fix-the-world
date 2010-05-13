@@ -1,6 +1,6 @@
 this is just a simple app which is supposed to help with generating and implementing various ideas for improvements in our lives
 
-##technically speaking
+##technically speaking 
 
 -  rails 3
 -  mongoid
