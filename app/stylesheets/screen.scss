@@ -3,18 +3,58 @@
 @import "blueprint/grid";
 // To configure blueprint, edit the partials/base.sass file.
 @import "partials/base";
-
 // Import all the default blueprint modules so that we can access their mixins.
 @import "blueprint";
-
 // Import the non-default scaffolding module.
 @import "blueprint/scaffolding";
-
 // To generate css equivalent to the blueprint css but with your configuration applied, uncomment:
- 
-
-
 //Recommended Blueprint configuration with scoping and semantic layout:
+
+$faded_yellow: #ffee80;
+$bright_orange: #ff9d00;
+$faded_orange: #ffb054;
+$nail_polish_pink: #ff0044;
+$neon_yellow: #ffdd00;
+$sky_blue: #0088ff;
+$teal_blue: #80ffbb;
+$light_blue: #0065bf;
+$medium_blue: #003b70;
+$dark_blue: #001b33;
+$black_blue: #000d1a;
+$white: #ffffff;
+$pale_grey: #eeeeee;
+$steel_grey: #333333;
+$spring_green: #3ad900;
+$light_grey: #cccccc;
+$dark_maroon: #002f29;
+$bluish_grey: #777777;
+$steelblue3: #4f94cd;
+
+
+
+$faded_yellow_rgb: #ffee80;
+$bright_orange_rgb: #ff9d00;
+$faded_orange_rgb: #ffb054;
+$nail_polish_pink_rgb: #ff0044;
+
+
+$neon_yellow_rgb: #ffdd00;
+$sky_blue_rgb: #0088ff;
+$teal_blue_rgb: #80ffbb;
+$light_blue_rgb: #0065bf;
+$medium_blue_rgb: #003b70;
+$dark_blue_rgb: #001b33;
+$black_blue_rgb: #000d1a;
+$white_rgb: #ffffff;
+$pale_grey_rgb: #eeeeee;
+$steel_grey_rgb: #333333;
+$spring_green_rgb: #3ad900;
+$light_grey_rgb: #cccccc;
+$dark_maroon_rgb: #002f29;
+$bluish_grey_rgb: #777777;
+$steelblue3_rgb: #4f94cd;
+
+
 @include blueprint-scaffolding("body.bp");
 
 body.bp {
@@ -23,8 +63,6 @@ body.bp {
   @include blueprint-debug;
   @include blueprint-interaction;
   @include blueprint-grid;
-  // Remove the scaffolding when you're ready to start doing visual design.
-  // Or leave it in if you're happy with how blueprint looks out-of-the-box
 }
 
 form.bp {
@@ -32,23 +70,90 @@ form.bp {
 }
 
 // Page layout can be done using mixins applied to your semantic classes and IDs:
-body.bp {
-  #container {
+body.bp.showgrid {
+  
+  background: url(../images/grid.png) repeat -3px 8px;
+  color: #eee;
+  h1,h2,h3,h4,h5,h6,h7{
+    color: #bcbcbc;
+  }
+
+  a{
+    font-weight: bolder;
+    font-size: 1.2em;
+    color: darken($nail_polish_pink_rgb, 5);
+    text-decoration: none;
+    
+  }
+
+  a:visited{
+    color: darken($nail_polish_pink_rgb, 15);
+  }
+
+  a:hover{
+    text-decoration: underline;
+  }
+
+  #container{
     @include container;
-    background: url(../images/grid.png) repeat;
+    background-color: rgba(0,59,112, 0.7);
 
-  }
+      #content {
+        $content_columns: $blueprint_grid_columns ;
+        @include column($content_columns, true); 
+        
+        .wish{
+          border: 1px solid $dark_maroon_rgb;
+        }
+      }
 
-  #content {
-    $content_columns: $blueprint_grid_columns ;
-    @include column($content_columns, true); 
-  }
+      #header {
+        @include column(24); 
+        
+        #logo{
+          float: left;
+          
+          span{
+            color: $neon_yellow_rgb;
+          }
 
-  #header, #footer {
-    @include column(24); 
+          #sienaprawia{
+            color: white;
+            font-weight: bolder;
+          }
+        }
+
+        #menu{
+          list-style-type: none;   
+          float: right;  
+          background-color: rgba(0,101,191, 0.5);
+          
+          li{
+            display: inline;
+            float: right;
+            margin: 5px 10px;
+            a{
+              color: #eee;
+              font: 1.3em bold "Helvetica Neue", Arial, Helvetica, sans-serif;
+            }
+
+            a:before{
+              color: $bright_orange;
+              content: "# ";
+            }
+
+            a:hover{
+              position: relative;
+              top:-2px;
+            }
+          }
+        }
+      }
+
+      #footer{
+        @include column(24);
+      }
   }
-  
-  
 }
 
 

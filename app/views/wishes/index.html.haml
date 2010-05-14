@@ -1,12 +1,15 @@
-%h1 Most popular wishes
+%h2 Most popular wishes
 
 -@wishes.each do |wish|
-  %h2= wish.name
-  %p= wish.content
-  = link_to 'Show', wish
-  = link_to 'Edit', edit_wish_path(wish)
-  = link_to 'Destroy', wish, :confirm => 'Are you sure?', :method => :delete 
-  
+  .wish.span-22.push-1
+    %h3= wish.name
+    %p= wish.content
+    = link_to 'Show', wish
+    = link_to 'Edit', edit_wish_path(wish)
+    = link_to 'Destroy', wish, :confirm => 'Are you sure?', :method => :delete 
+
+%hr
+
 .pagination
   = will_paginate @wishes 
 

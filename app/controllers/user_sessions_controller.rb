@@ -17,9 +17,7 @@ class UserSessionsController < ApplicationController
 
   def destroy
     logout
-    
     flash[:success] = "Logout successful!"
-
     render :text => "wylogowano"
   end
   
