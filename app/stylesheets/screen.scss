@@ -96,14 +96,15 @@ body.bp.showgrid {
 
   #container{
     @include container;
-    background-color: rgba(0,59,112, 0.7);
+    background-color: rgba(0,59,112, 1);
 
       #content {
         $content_columns: $blueprint_grid_columns ;
         @include column($content_columns, true); 
         
         .wish{
-          border: 1px solid $dark_maroon_rgb;
+          border-top: 2px solid;
+          padding: 5px;
         }
       }
 
@@ -121,6 +122,10 @@ body.bp.showgrid {
             color: white;
             font-weight: bolder;
           }
+        }
+
+        #tagline{
+          font-style: italics;
         }
 
         #menu{
@@ -150,6 +155,18 @@ body.bp.showgrid {
         }
       }
 
+      .title{
+        font-size:2.5em;
+        font-weight: bold;
+        color: #dedede;
+        background-color: #ee2323;
+      }
+      .pagination{
+        border: 1px solid red;
+        padding: 5px;
+        text-align: center;
+        clear: both;
+      }
       #footer{
         @include column(24);
       }
