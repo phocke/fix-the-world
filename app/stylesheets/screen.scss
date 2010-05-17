@@ -72,7 +72,9 @@ form.bp {
 // Page layout can be done using mixins applied to your semantic classes and IDs:
 body.bp.showgrid {
   
-  background: url(../images/grid.png) repeat -3px 8px;
+  /*background: url(../images/bg_body.png) repeat;*/
+  background: url(../images/bgtile.jpg) repeat;
+  /*background: url(../images/grid.png) repeat -3px 8px;*/
   color: #eee;
   h1,h2,h3,h4,h5,h6,h7{
     color: #bcbcbc;
@@ -96,14 +98,26 @@ body.bp.showgrid {
 
   #container{
     @include container;
-    background-color: rgba(0,59,112, 1);
+    background-color: rgba(0,59,112, .3);
+    border: 2px solid #ddd;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    -moz-box-shadow: 0 6px 30px #88f;
+    -webkit-box-shadow: 0 0 10px #555;
 
+    
       #content {
         $content_columns: $blueprint_grid_columns ;
         @include column($content_columns, true); 
         
         .wish{
-          border-top: 2px solid;
+          border: 1px solid rgba(0,59,112, .5); 
+          -webkit-border-radius: 5px;
+          -moz-border-radius: 5px;
+          border-radius: 5px;
+
+          background-color: rgba(0,59,112, .2);
           padding: 5px;
         }
       }
@@ -129,14 +143,21 @@ body.bp.showgrid {
         }
 
         #menu{
+          margin: 0;
+          padding: 0;
           list-style-type: none;   
           float: right;  
-          background-color: rgba(0,101,191, 0.5);
+          background-color: rgba(0,101,191, 0.3);
           
+          -webkit-border-bottom-left-radius: 10px;
+          -moz-border-bottom-left-radius: 10px;
+          border-bottom-left-radius: 10px;
+          
+
           li{
             display: inline;
-            float: right;
-            margin: 5px 10px;
+            float: left;
+            margin: 5px 8px 3px 7px;
             a{
               color: #eee;
               font: 1.3em bold "Helvetica Neue", Arial, Helvetica, sans-serif;
@@ -151,6 +172,14 @@ body.bp.showgrid {
               position: relative;
               top:-2px;
             }
+          }
+
+          li.first{
+            margin-left: 5px;
+          }
+
+          li.last{
+            margin-right: 10px;
           }
         }
       }
@@ -169,6 +198,21 @@ body.bp.showgrid {
       }
       #footer{
         @include column(24);
+        .span-6{
+        
+        }
+
+        #branding{
+        
+        }
+
+        #copyrights{
+        
+        }
+
+        #links{
+        
+        }
       }
   }
 }
