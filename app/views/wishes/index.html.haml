@@ -7,7 +7,7 @@
     = link_to 'Show', wish
     = link_to 'Edit', edit_wish_path(wish)
     = link_to 'Destroy', wish, :confirm => 'Are you sure?', :method => :delete 
-
-= will_paginate @wishes 
+-content_for :pagination do
+  = will_paginate @wishes 
 
 = link_to 'New Wish', new_wish_path 

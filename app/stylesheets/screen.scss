@@ -76,6 +76,7 @@ body.bp.showgrid {
   background: url(../images/bgtile.jpg) repeat;
   /*background: url(../images/grid.png) repeat -3px 8px;*/
   color: #eee;
+  
   h1,h2,h3,h4,h5,h6,h7{
     color: #bcbcbc;
   }
@@ -96,17 +97,24 @@ body.bp.showgrid {
     text-decoration: underline;
   }
 
-  #container{
-    @include container;
+  .deteached{
+    margin: 0 auto;
+    @include column(24);
     background-color: rgba(0,59,112, .3);
-    border: 2px solid #ddd;
+    border: 2px solid darken( rgba(0,59,112, .3), 10);
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
-    -moz-box-shadow: 0 6px 30px #88f;
-    -webkit-box-shadow: 0 0 10px #555;
+    -moz-box-shadow: 0 6px 30px #555;
+    -webkit-box-shadow: 0 0 15px darken( rgba(0,59,112, 1), 10);
+    margin: 5px auto;
+  }
 
-    
+  #container{
+
+    @include container;
+    width: 970px;
+    margin: 0 auto;
       #content {
         $content_columns: $blueprint_grid_columns ;
         @include column($content_columns, true); 
@@ -190,28 +198,45 @@ body.bp.showgrid {
         color: #dedede;
         background-color: #ee2323;
       }
-      .pagination{
-        border: 1px solid red;
-        padding: 5px;
+      #pagination-container{
+        /*padding: 5px;*/
+        padding: 10px 0;
         text-align: center;
-        clear: both;
       }
       #footer{
         @include column(24);
         .span-6{
-        
+          /*border: 1px solid rgba(0,59,112, .5); */
+          -webkit-border-radius: 5px;
+          -moz-border-radius: 5px;
+          border-radius: 5px;
+          margin-bottom: 10px;
+          background-color: rgba(0,59,112, .2);
+          /*padding: 5px;*/
+          /*h4{*/
+            /*margin: 10px 15px;*/
+          /*}*/
+          h3{ 
+            border-bottom: 1px dashed  rgba(0,59,112, 1);
+            padding-bottom: 4px;
+          }
+          ul{
+            list-style-type: none;
+            margin-top: -10px;
+            li{
+              text-indent: 15px;
+              font-size: 1.2em;
+            }
+          }
         }
-
-        #branding{
-        
+        #branding, #links{
+          text-align: right; 
+          margin-top: -10px;
+          margin-bottom: 5px;
         }
-
         #copyrights{
-        
-        }
-
-        #links{
-        
+          text-align: center;
+          margin: 5px auto 20px auto;
         }
       }
   }
