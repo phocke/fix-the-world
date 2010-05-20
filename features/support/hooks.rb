@@ -1,3 +1,3 @@
 After do
-  Given "i see menu" 
+  Given "I see valid webpage structure" 
 end
