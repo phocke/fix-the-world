@@ -10,6 +10,7 @@ class User
 
   has_many_related :wishes
   has_many_related :votes
+  has_many_related :issues
 
   validates_presence_of   :email, :name
   validates_uniqueness_of :email

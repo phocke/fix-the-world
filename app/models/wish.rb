@@ -6,6 +6,7 @@ class Wish
   field :content, :type => String
 
   belongs_to_related :user
+  belongs_to_related :issue
   has_many_related :votes
 
   def voted_by?(user)

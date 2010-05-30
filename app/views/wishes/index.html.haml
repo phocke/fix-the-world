@@ -4,10 +4,10 @@
   .wish.span-22.push-1.clear.large
     %h3= wish.name
     %p= wish.content
-    = link_to 'Show', wish
-    = link_to 'Edit', edit_wish_path(wish)
-    = link_to 'Destroy', wish, :confirm => 'Are you sure?', :method => :delete 
+    = link_to 'Show', [wish.issue, wish]
+    -#= link_to 'Edit', edit_wish_path(wish)
+    -#= link_to 'Destroy', wish, :confirm => 'Are you sure?', :method => :delete 
 -content_for :pagination do
   = will_paginate @wishes 
 
-= link_to 'New Wish', new_wish_path 
+= link_to 'New Wish', new_issue_wish_path 

@@ -5,22 +5,25 @@ Feature: Manage wishes
   Background:
     Given I have no wishes
     And I have no users
-    And the following users exists
+    And the following users exist
       | user | name | email           | admin |
       | Ann  | Ann  | ann@ann.com     | false |
       | Fred | Fred | fred@gmail.com  | true  |
+    And  the following issues exist
+      | issue | name  | description | user        |
+      | world | world |             | user "Ann"  |
     And the following wishes exist
-      | name    | content | user        |
-      | title 1 | lorem   | user "Fred" | 
-      | title 2 | lorem   | user "Ann"  |
-      | title 3 | lorem   | user "Fred" |
+      | name    | content | user        | issue         |
+      | title 1 | lorem   | user "Fred" | issue "world" |
+      | title 2 | lorem   | user "Ann"  | issue "world" |
+      | title 3 | lorem   | user "Fred" | issue "world" |
 
-  Scenario: Register new wish
+  Scenario: Create new wish
     Given I have no users
     And I have user with email "ala@ala.com"
     And I am signed in as "ala@ala.com" with password "foobar"
-    And I am on the new wish page
-    When I fill in "Name" with "title 1"
+    When I create new wish for issue named "world"
+    And I fill in "Name" with "title 1"
     And I fill in "Content" with "content 1"
     And I press "Create"
     Then I should see "Wish was successfully created."
@@ -31,12 +34,12 @@ Feature: Manage wishes
     Given I am signed in as "ann@ann.com" with password "foobar"
     When I delete the wish named "title 1"
     And I delete the wish named "title 2"
-    Then I should have 3 wishes
+    Then I should have 2 wishes
     Given I am on the signout page
     And I am signed in as "fred@gmail.com" with password "foobar"
     When I delete the wish named "title 1"
-    And I delete the wish named "title 2"
-    Then I should have 1 wish
+    And I delete the wish named "title 3"
+    Then I should have 0 wish
 
   Scenario: Edit wishes
     Given I am signed in as "ann@ann.com" with password "foobar"

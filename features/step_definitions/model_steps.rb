@@ -18,5 +18,5 @@ Given /^I have (\w+)$/ do |object|
 end
 
 Then /^I should have (\d+) (.+)$/ do |number, object|
-  number.to_i.should == object.classify.constantize.all.count
+  object.classify.constantize.all.count.should == number.to_i
 end
