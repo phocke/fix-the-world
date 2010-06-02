@@ -25,6 +25,7 @@ TestApp::Application.routes.draw do |map|
   match "/signout" => "user_sessions#destroy", :as => :signout
  
   root :to => "issues#index"
+  
 
   #match ':controller(/:action(/:id(.:format)))'
 end
