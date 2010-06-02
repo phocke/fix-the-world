@@ -43,8 +43,8 @@ class WishesController < ApplicationController
 
   def add_vote
     wish = Wish.find(params[:id])
-    vote = wish.votes.build(:user => current_user)
-
+    vote = wish.votes.build(:user_id => current_user.id)
+    #raise vote.inspect
     if vote.save
       flash[:success] = "Successfully added vote."
     else

@@ -16,7 +16,16 @@
     = yield :javascripts
   %body.bp.showgrid
     #container
+      =debug params
       #header.large.deteached
+        -if current_user
+          logged in as a #{current_user.name}
+          =link_to "logout", signout_url
+        -else
+          not logged yet
+          =link_to "signin", signin_url
+          or
+          =link_to "signup", signup_url
         %h1.span-14.first#logo 
           %span> Kraków
           %span#sienaprawia< .sie-naprawia
@@ -50,9 +59,9 @@
         #branding.span-11.push-1.first
           brought to you by amazing team from 
           =link_to "Future Simple", "http://futuresimple.pl"
-          %span Przemo
+          %span Przemek
           &amp;
-          %span Zuchaman :)
+          %span Sebcioz :)
         #links.span-11.last
           - 5.times do |i|
             = link_to Faker::Lorem.words(1)[0], "#"

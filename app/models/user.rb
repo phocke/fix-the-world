@@ -21,7 +21,7 @@ class User
   before_save :initialize_salt, :encrypt_password
   
   attr_accessor :password, :password_confirmation
-  
+
   class << self
     def authenticate(email, password)
       return nil  unless user = criteria.where(:email => email).first
@@ -43,6 +43,10 @@ class User
 
   def not_guest?
     !guest?
+  end
+
+  def admin?
+    self.admin
   end
   
   protected

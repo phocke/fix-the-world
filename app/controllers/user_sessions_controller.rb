@@ -9,16 +9,15 @@ class UserSessionsController < ApplicationController
     authenticate!
     
     if logged_in?
-      flash[:success] = "Login successful!"
-    
-      render :text => "OK :) Zalogowany jako #{current_user.name}"
+      flash[:success] = "Login successful!" 
+      redirect_to root_url# :text => "OK :) Zalogowany jako #{current_user.name}"
     end
   end
 
   def destroy
     logout
     flash[:success] = "Logout successful!"
-    render :text => "wylogowano"
+    redirect_to root_url
   end
   
   def unauthenticated

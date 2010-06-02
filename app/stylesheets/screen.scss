@@ -97,6 +97,19 @@ body.bp.showgrid {
     text-decoration: underline;
   }
 
+  .block{
+    display: block;
+    margin: 0;
+  }
+
+  .relative{
+    position: relative;
+  }
+
+  .absolute{
+    position: absolute;
+  }
+
   .deteached{
     margin: 0 auto;
     @include column(24);
@@ -104,15 +117,15 @@ body.bp.showgrid {
     border: 2px solid darken( rgba(0,59,112, .3), 10);
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
-    border-radius: 10px;
+    border-radius: 10px; 
     -moz-box-shadow: 0 6px 30px #555;
     -webkit-box-shadow: 0 0 15px darken( rgba(0,59,112, 1), 10);
     margin: 5px auto;
   }
 
   #container{
-
     @include container;
+    overflow: visible;
     width: 970px;
     margin: 0 auto;
       #content {
@@ -125,8 +138,26 @@ body.bp.showgrid {
           -moz-border-radius: 5px;
           border-radius: 5px;
 
+          -webkit-border-top-left-radius: 0;
+          -moz-border-top-left-radius: 0;
+          border-top-left-radius: 0;
+          
           background-color: rgba(0,59,112, .2);
           padding: 5px;
+        
+          .wish-stats{
+            left: -72px;
+            top:-1px;
+            border: 1px solid rgba(0,59,112, .5); 
+            background: rgba(0,59,112, .3);
+            width: 70px;
+            -webkit-border-bottom-left-radius: 5px;
+            -moz-border-bottom-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+            -webkit-border-top-left-radius: 5px;
+            -moz-border-top-left-radius: 5px;
+            border-top-left-radius: 5px;
+          }
         }
       }
 
@@ -156,11 +187,9 @@ body.bp.showgrid {
           list-style-type: none;   
           float: right;  
           background-color: rgba(0,101,191, 0.3);
-          
-          -webkit-border-bottom-left-radius: 10px;
-          -moz-border-bottom-left-radius: 10px;
-          border-bottom-left-radius: 10px;
-          
+          -webkit-border-radius: 10px;
+          -moz-border-radius: 10px;
+          border-radius: 10px;          
 
           li{
             display: inline;
