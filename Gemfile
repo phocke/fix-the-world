@@ -13,7 +13,6 @@ gem "warden"
 gem "rails_warden"
 gem "cancan"
 gem "will_paginate"
-#gem "subdomain_routes"
 
 group :test do
     gem "rspec-rails", "2.0.0.beta.8"

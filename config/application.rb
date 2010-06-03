@@ -12,6 +12,7 @@ Bundler.require(Rails.env, :default)
 
 module TestApp
   class Application < Rails::Application
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
@@ -45,5 +46,7 @@ module TestApp
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters << :password
+    
+    require File.join(Rails.root, "lib", "to_permalink")
   end
 end

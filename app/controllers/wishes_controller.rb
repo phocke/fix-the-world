@@ -1,20 +1,23 @@
 class WishesController < ApplicationController
+  before_filter :find_issue
+  before_filter :find_wish, :only => [:show, :edit, :update, :destroy, :add_vote]
   load_and_authorize_resource
-  
-  before_filter(:get_recipe)
 
-  private
-  def get_recipe
-    @issue = Issue.find(params[:issue_id])
+private
+  def find_issue
+    @issue = Issue.find(:first, :conditions => {:permalink => params[:issue_id]})
   end
 
-  public
+  def find_wish
+    @wish = Wish.find(:first, :conditions => {:permalink => params[:id]})
+  end
+
+public
   def index
-    @wishes = @issue.wishes.paginate :page=>params[:page], :per_page=>10
+    @wishes = @issue.wishes.paginate :page => params[:page], :per_page => 10
   end
 
   def show
-    @wish = @issue.wishes.find(params[:id])
   end
 
   def new
@@ -35,11 +38,9 @@ class WishesController < ApplicationController
   end
 
   def edit
-    @wish = @issue.wishes.find(params[:id])
   end
 
   def update
-    @wish = Wish.find(params[:id])
     if @wish.update_attributes(params[:wish])
       flash[:success] = "Wish was successfully updated."
       redirect_to [@issue, @wish]
@@ -49,15 +50,13 @@ class WishesController < ApplicationController
   end
   
   def destroy
-    @wish = Wish.find(params[:id])
     @wish.destroy
     flash[:success] = "Wish destroyed"
     redirect_to issue_wishes_path
   end
 
   def add_vote
-    wish = Wish.find(params[:id])
-    vote = wish.votes.build(:user => current_user)
+    vote = @wish.votes.build(:user => current_user)
 
     if vote.save
       flash[:success] = "Successfully added vote."
@@ -65,7 +64,7 @@ class WishesController < ApplicationController
       flash[:error] = "Don't cheat!"
     end
 
-    redirect_to [wish.issue, wish]
+    redirect_to [@wish.issue, @wish]
   end
 
 end
