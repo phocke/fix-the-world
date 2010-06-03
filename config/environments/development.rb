@@ -16,4 +16,6 @@ TestApp::Application.configure do
 
   # Don't care if the mailer can't send
   config.action_mailer.raise_delivery_errors = false
+
+  #config.action_controller.session[:session_domain] = "localhost" # or whatever
 end

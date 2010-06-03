@@ -1,4 +1,9 @@
 TestApp::Application.routes.draw do |map|
+
+  constraints(:subdomain => "support") do
+    match "/", :to => "issues#new"
+  end
+
   resources :issues do
     resources :wishes do   
       get :add_vote, :on => :member   
