@@ -1,4 +1,4 @@
-<%= link_to vote_char(@wish), add_vote_issue_wish_path(@wish.issue, @wish) %>
+<%= link_to vote_char(@wish), add_vote_wish_path(@wish) %>
 
 <p>
   <b>Name:</b>
@@ -16,6 +16,6 @@
 </p>
 
 
-<%= link_to 'Edit', edit_issue_wish_path(@wish.issue, @wish) %> |
-<%= link_to 'Back', issue_wishes_path %>
-<%= link_to 'Destroy', [@wish.issue, @wish], :confirm => 'Are you sure?', :method => :delete %>
+<%= link_to 'Edit', edit_wish_path(@wish) %> |
+<%= link_to 'Back', wishes_path %>
+<%= link_to 'Destroy', @wish, :confirm => 'Are you sure?', :method => :delete %>

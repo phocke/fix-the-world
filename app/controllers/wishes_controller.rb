@@ -5,7 +5,7 @@ class WishesController < ApplicationController
 
 private
   def find_issue
-    @issue = Issue.find(:first, :conditions => {:permalink => params[:issue_id]})
+    @issue = Issue.find(:first, :conditions => {:permalink => @current_subdomain})
   end
 
   def find_wish
@@ -28,10 +28,9 @@ public
     @wish = current_user.wishes.build(params[:wish]) 
     @wish.issue = @issue
 
-
     if @wish.save
       flash[:success] = "Wish was successfully created."
-      redirect_to [@issue, @wish]
+      redirect_to @wish
     else
       render :action => "new"
     end
@@ -43,7 +42,7 @@ public
   def update
     if @wish.update_attributes(params[:wish])
       flash[:success] = "Wish was successfully updated."
-      redirect_to [@issue, @wish]
+      redirect_to @wish
     else
       render :action => "edit"
     end
@@ -52,7 +51,7 @@ public
   def destroy
     @wish.destroy
     flash[:success] = "Wish destroyed"
-    redirect_to issue_wishes_path
+    redirect_to wishes_path
   end
 
   def add_vote
@@ -64,7 +63,7 @@ public
       flash[:error] = "Don't cheat!"
     end
 
-    redirect_to [@wish.issue, @wish]
+    redirect_to @wish
   end
 
 end

@@ -3,15 +3,15 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   helper_method :logged_in?
-  #before_filter :set_flashes, :if=>"Rails.env == 'development'"
+  before_filter :get_subdomain
 
-  def set_flashes
-    flash[:error], flash[:notice], flash[:success] = faker(3)
+  def subdomain_url(subdomain, path="")
+    "http://#{subdomain}.#{request.domain}#{request.port_string}#{path}"
   end
 
-  private
-
-  def faker(how_many)
-    Array.new(how_many){Faker::Lorem.sentence(10+rand(20))}
+private
+  def get_subdomain
+    @current_subdomain = request.subdomains[0]
   end
+
 end

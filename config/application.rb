@@ -46,7 +46,10 @@ module TestApp
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters << :password
-    
+
+    require File.join(Rails.root, "lib", "no_www")
+    config.middleware.use NoWWW
+
     require File.join(Rails.root, "lib", "to_permalink")
   end
 end

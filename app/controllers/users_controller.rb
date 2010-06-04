@@ -19,8 +19,10 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
 
     if @user.save
-      redirect_to(@user, :notice => 'Signed up succesfully.')
+      flash[:success] = "Signed up successfully."
+      redirect_to root_path 
     else
+      flash[:error] = "Not signed up."
       render :action => "new"
     end
   end
