@@ -24,8 +24,8 @@ module ApplicationHelper
     end
   end
 
-  def poly_wish_url(wish)
-    polymorphic_url(wish, :subdomain => wish.issue.permalink) 
+  def url_with_subdomain(wish)
+    polymorphic_url(wish, :subdomain => wish.issue.permalink)
   end
   
 end

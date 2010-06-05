@@ -23,4 +23,4 @@
 
 <%= link_to 'Edit', edit_wish_path(@wish, :subdomain => @wish.issue.permalink) %> |
 <%= link_to 'Back', wishes_path %>
-<%= link_to 'Destroy', poly_wish_url(@wish), :confirm => 'Are you sure?', :method => :delete %>
+<%= link_to 'Destroy', url_with_subdomain(@wish), :confirm => 'Are you sure?', :method => :delete %>
