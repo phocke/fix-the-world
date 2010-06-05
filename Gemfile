@@ -13,6 +13,7 @@ gem "warden"
 gem "rails_warden"
 gem "cancan"
 gem "will_paginate"
+gem 'subdomain-fu', :git => "git://github.com/nhowell/subdomain-fu.git"
 
 group :test do
     gem "rspec-rails", "2.0.0.beta.8"

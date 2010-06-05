@@ -1,5 +1,5 @@
 Before do
-  host! "example.com"
+  #host! "example.com"
   Capybara.default_host = "example.com"
 end
 

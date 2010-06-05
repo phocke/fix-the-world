@@ -5,7 +5,7 @@ class WishesController < ApplicationController
 
 private
   def find_issue
-    @issue = Issue.find(:first, :conditions => {:permalink => @current_subdomain})
+    @issue = Issue.find(:first, :conditions => {:permalink => current_subdomain})
   end
 
   def find_wish

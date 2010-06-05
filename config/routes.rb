@@ -19,5 +19,5 @@ TestApp::Application.routes.draw do |map|
  
   root :to => "issues#index"
 
-  match ':controller(/:action(/:id(.:format)))'
+  #match ':controller(/:action(/:id(.:format)))'
 end

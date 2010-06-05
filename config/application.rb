@@ -18,7 +18,7 @@ module TestApp
     # -- all .rb files in that directory are automatically loaded.
 
     # Add additional load paths for your own custom dirs
-    # config.load_paths += %W( #{config.root}/extras )
+    #config.load_paths += %W( #{Rails.root}/lib )
 
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named
@@ -47,9 +47,9 @@ module TestApp
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters << :password
 
-    require File.join(Rails.root, "lib", "no_www")
+    require "lib/no_www"
     config.middleware.use NoWWW
 
-    require File.join(Rails.root, "lib", "to_permalink")
+    require "lib/to_permalink"
   end
 end

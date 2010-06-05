@@ -14,6 +14,7 @@ class Wish
   # has_many_related :tags, :through => :taggings IS WORKING
   
   before_save :set_permalink
+  after_save :save_tags
 
   def voted_by?(user)
     Vote.find(:all, :conditions => {:user_id => user.id, :wish_id => self.id}).count > 0
@@ -34,7 +35,7 @@ class Wish
   end
 
   def tags
-    self.taggings.collect(&:tag).collect(&:name)
+    self.taggings.collect(&:tag).collect(&:name).sort
   end
 
   # methods for forms
@@ -43,9 +44,14 @@ class Wish
   end
 
   def tag_list=(tags)
+    @tag_list_temp = tags # tags can be saved only if wish is saved
+  end
+
+  def save_tags
+    tags = @tag_list_temp
     self.taggings.destroy_all
 
-    tags = tags.split(", ") if tags.is_a? String
+    (tags = tags.split(", ")) if tags.is_a? String
     tags.each do |tag|
       self.add_tag(tag)  
     end

@@ -4,6 +4,7 @@ Feature: Manage wishes
   
   Background:
     Given I have no wishes
+    And I have no issues
     And I have no users
     And the following users exist
       | user | name | email           | admin |
@@ -19,16 +20,19 @@ Feature: Manage wishes
       | title 3 | lorem   | user "Fred" | issue "world" |
 
   Scenario: Create new wish
-    Given I have no users
-    And I have user with email "ala@ala.com"
-    And I am signed in as "ala@ala.com" with password "foobar"
+    Given I have no wishes
+    And I am signed in as "ann@ann.com" with password "foobar"
     When I create new wish for issue named "world"
-    And I fill in "Name" with "title 1"
+    When I fill in "Name" with "title 1"
     And I fill in "Content" with "content 1"
-    And I press "Create"
+    And I fill in "Tag list" with "a, b, c, a, b, z"
+    When I press "Create Wish"
+    Then I should have 1 wish
     Then I should see "Wish was successfully created."
     And I should see "title 1"
-    And I should see "ala@ala.com"
+    And I should see "ann@ann.com"
+    And I should see "a, b, c, z"
+
 
   Scenario: Delete wishes
     Given I am signed in as "ann@ann.com" with password "foobar"
