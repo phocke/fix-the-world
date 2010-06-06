@@ -1,0 +1,9 @@
+- if current_subdomain.nil?
+  %h2 All wishes tagged as <strong>#{params[:id]}</strong>
+- else
+  %h2 Wishes in issue "#{@issue.name}" tagged as <strong>#{params[:id]}</strong>
+
+= @wishes.count
+%ul
+- @wishes.each do |wish|
+  %li= wish.name

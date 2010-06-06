@@ -1,5 +1,7 @@
 TestApp::Application.routes.draw do |map|
   
+  resources :tags
+
   constraints(:subdomain => /.+/) do
     resources :wishes, :path => "" do   
       get :add_vote, :on => :member   

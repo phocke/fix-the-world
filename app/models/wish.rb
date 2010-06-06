@@ -16,6 +16,8 @@ class Wish
   before_save :set_permalink
   after_save :save_tags
 
+  named_scope :tagged_with, lambda { |tag| criteria.id(Tag.where(:name => tag).first.taggings.collect(&:wish_id)) }
+
   def voted_by?(user)
     Vote.find(:all, :conditions => {:user_id => user.id, :wish_id => self.id}).count > 0
   end
@@ -29,6 +31,7 @@ class Wish
   end
 
   # TODO clean up, move to external module
+  
   def add_tag(name)
     tag = Tag.find_or_create_by(:name => name)
     self.taggings.build(:tag => tag).save
