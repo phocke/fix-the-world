@@ -1,8 +1,9 @@
 source 'http://gemcutter.org'
 
 gem "rails",    "3.0.0.beta3"
-gem "bson_ext", "1.0" unless RUBY_VERSION == "1.8.7"
-gem "mongoid",  "2.0.0.beta4" #:git => "git://github.com/durran/mongoid.git"
+gem "bson", "1.0.1"
+#gem "bson_ext", "1.0" unless RUBY_VERSION == "1.8.7"
+gem "mongoid",  "2.0.0.beta6", :git => "git://github.com/durran/mongoid.git"
 gem "haml",     "3.0.0.rc.2"
 gem "compass",  "0.10.0.rc4"
 gem "compass-colors"
