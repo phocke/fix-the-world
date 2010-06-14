@@ -6,7 +6,7 @@ Feature: Manage users
   Scenario Outline: Sign up
     Given I have no users
     When I sign up as "<email>" with name "<name>" and password "secret"
-    Then I should <action> "Signed up succesfully"
+    Then I should <action> "Signed up successfully"
 
     Examples:
       | email             | name    | action  |

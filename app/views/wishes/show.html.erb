@@ -1,4 +1,4 @@
-<%= link_to vote_char(@wish), add_vote_wish_path(@wish) %>
+<%= link_to vote_char(@wish), add_vote_wish_url(@wish, :subdomain => @wish.issue.permalink) %>
 
 <p>
   <b>Name:</b>
@@ -12,10 +12,15 @@
 
 <p>
   <b>User:</b>
-  <%= @wish.user.email %>
+  <%= @wish.user.email%>
+</p>
+
+<p>
+  <b>Tag list:</b>
+  <%= @wish.tag_list %>
 </p>
 
 
-<%= link_to 'Edit', edit_wish_path(@wish) %> |
+<%= link_to 'Edit', edit_wish_path(@wish, :subdomain => @wish.issue.permalink) %> |
 <%= link_to 'Back', wishes_path %>
-<%= link_to 'Destroy', @wish, :confirm => 'Are you sure?', :method => :delete %>
+<%= link_to 'Destroy', url_with_subdomain(@wish), :confirm => 'Are you sure?', :method => :delete %>

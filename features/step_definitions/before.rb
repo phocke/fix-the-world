@@ -1,4 +1,5 @@
 Given /^I see valid webpage structure$/ do
+  Given "I am on the root page"
   Given "I see menu"
 end
 

@@ -1,22 +1,26 @@
 When /^I see the wish named "([^\"]*)"$/ do |name|
   wish = Wish.find(:first, :conditions => {:name => name})
-  visit wish_path(wish)
+  visit wish_url(wish, :subdomain => wish.issue.permalink)
 end
 
 When /^I delete the wish named "(.+)"$/ do |name|
-  wish = Wish.find(:first, :conditions => {:name => name})
-  visit wish_path(wish)
+  When %{I see the wish named "#{name}"}
   When %{I follow "Destroy"}
+end
+
+When /^I create new wish for issue named "(.+)"$/ do |name|
+  issue = Issue.find(:first, :conditions => {:name => name})
+  visit new_wish_url(:subdomain => issue.permalink)
 end
 
 When /^I edit the wish named "(.+)"$/ do |name|
   wish = Wish.find(:first, :conditions => {:name => name})
-  visit edit_wish_path(wish)
+  visit edit_wish_url(wish, :subdomain => wish.issue.permalink)
 end
 
 When /^I add vote for wish named "(.+)"$/ do |name|
   wish = Wish.find(:first, :conditions => {:name => name})
-  visit add_vote_wish_path(wish)
+  visit add_vote_wish_url(wish, :subdomain => wish.issue.permalink)
 end
 
 Then /^I should see the following wishes:$/ do |expected_wishes_table|

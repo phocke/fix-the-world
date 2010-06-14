@@ -1,4 +1,4 @@
-<%= form_for(@wish) do |f| %>
+<%= form_for @wish, :url => url_with_subdomain(@wish) do |f| %>
   <% if @wish.errors.any? %>
   <div id="errorExplanation">
     <h2><%= pluralize(@wish.errors.count, "error") %> prohibited this wish from being saved:</h2>
@@ -17,6 +17,10 @@
   <div class="field">
     <%= f.label :content %><br />
     <%= f.text_area :content %>
+  </div>
+  <div class="field">
+    <%= f.label :tag_list %><br />
+    <%= f.text_field :tag_list %>
   </div>
   <div class="actions">
     <%= f.submit %>
