@@ -19,12 +19,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
 
     if @user.save
-<<<<<<< HEAD
       redirect_to(@user, flash[:success] => 'Signed up succesfully. Check your email dude :)')
-=======
-      flash[:success] = "Signed up successfully."
-      redirect_to root_path 
->>>>>>> 710b3e293e0f1334d3de2ebfb984dbb6d0413ca5
     else
       flash[:error] = "Not signed up."
       render :action => "new"

@@ -23,21 +23,6 @@ class Wish
     Vote.find(:first, :conditions => {:user_id => user.id, :wish_id => self.id}).nil?
   end
 
-<<<<<<< HEAD
-  def to_param
-    "#{id}-#{name.gsub(/[^a-z0-9]+/i, '-')}"
-  end
-
-  def tags
-    self.taggings.collect(&:tag)
-  end
-  
-  #we tried to mimic ActiveRecord intereface bu we were not able to use original fullstop so we invited our own one :D
-  def tags•build(name)
-    tag = Tag.find_or_create_by(:name => name)
-    self.taggings.build(:tag => tag).save
-  end
-=======
   def set_permalink
     self.permalink = name.force_encoding("UTF-8").to_permalink
   end
@@ -76,5 +61,4 @@ class Wish
     end
   end
 
->>>>>>> 710b3e293e0f1334d3de2ebfb984dbb6d0413ca5
 end

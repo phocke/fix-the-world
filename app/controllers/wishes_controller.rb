@@ -55,15 +55,10 @@ public
   end
 
   def add_vote
-<<<<<<< HEAD
-    wish = Wish.find(params[:id])
-    vote = wish.votes.build(:user_id => current_user.id)
-    #raise vote.inspect
-=======
+    @wish = Wish.find(params[:id])
     vote = @wish.votes.build(:user => current_user)
 
->>>>>>> 710b3e293e0f1334d3de2ebfb984dbb6d0413ca5
-    if vote.save
+    if @vote.save
       flash[:success] = "Successfully added vote."
     else
       flash[:error] = "Don't cheat!"
