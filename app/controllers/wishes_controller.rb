@@ -1,23 +1,31 @@
 class WishesController < ApplicationController
-  before_filter :find_issue
+  before_filter :find_issue #, :set_subdomain
   before_filter :find_wish, :only => [:show, :edit, :update, :destroy, :add_vote]
   load_and_authorize_resource
 
 private
   def find_issue
-    @issue = Issue.find(:first, :conditions => {:permalink => current_subdomain})
+    @issue ||= Issue.find(:first, :conditions => {:permalink => current_subdomain || params[:id]})
   end
+
+  #def set_subdomain
+    #if @issue and current_subdomain.blank?
+      #current_subdomain = @issue.permalink
+    #end
+  #end
 
   def find_wish
     @wish = Wish.find(:first, :conditions => {:permalink => params[:id]})
   end
 
 public
+  
   def index
     @wishes = @issue.wishes.paginate :page => params[:page], :per_page => 10
   end
 
   def show
+
   end
 
   def new

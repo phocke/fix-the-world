@@ -4,7 +4,7 @@ class IssuesController < ApplicationController
 
 private
   def find_issue
-    @issue = Issue.find(:first, :conditions => {:permalink => params[:id]})
+    @issue ||= Issue.find(:first, :conditions => {:permalink => params[:id]})
   end
 
 public
@@ -13,7 +13,8 @@ public
   end
 
   def show
-    @issue = Issue.find(:first, :conditions => {:permalink => params[:id]})
+    #@issue = Issue.find(:first, :conditions => {:permalink => params[:id]})
+    render :action=>:index,  :controller=>:wishes, :permalink=>params[:id]
   end
 
   def new

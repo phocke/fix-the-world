@@ -9,15 +9,13 @@ class Wish
   belongs_to_related :user
   belongs_to_related :issue
   has_many_related :votes
-  has_many_related :taggings
 
   has_many_related :taggings
   # has_many_related :tags, :through => :taggings IS WORKING
   
   before_save :set_permalink
   after_save :save_tags
-
-  named_scope :tagged_with, lambda { |tag| criteria.id(Tag.where(:name => tag).first.taggings.collect(&:wish_id)) }
+  #named_scope :tagged_with, lambda { |tag| criteria.id(Tag.where(:name => tag).first.taggings.collect(&:wish_id)) }
 
   def voted_by?(user)
     Vote.find(:first, :conditions => {:user_id => user.id, :wish_id => self.id}).nil?

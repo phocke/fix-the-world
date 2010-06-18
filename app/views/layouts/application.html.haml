@@ -17,6 +17,7 @@
   %body.bp.showgrid
     #container
       =debug params
+      =debug current_subdomain 
       #header.large.deteached
         -if current_user
           logged in as a #{current_user.name}
@@ -27,14 +28,14 @@
           or
           =link_to "signup", signup_url
         %h1.span-14.first#logo 
-          %span> Kraków
+          %span>= current_subdomain.try(:capitalize)
           %span#sienaprawia< .sie-naprawia
         %ul.span-8.last#menu
-          %li.first=link_to 'wishes', '#'
-          %li=link_to 'fix sth else', '#'
+          %li.first=link_to 'wishes', @issue
+          %li=link_to 'fix sth else', new_issue_path
           %li.last=link_to 'about us', '#'
         %hr
-        %span#tagline.large this is very exciting site which will eventually fix the word
+        %span#tagline.large= @issue.present? ? @issue.description : "this is very exciting site which will eventually fix the word"
       #content.deteached
         - flash.each do |name, msg|
           = content_tag :div, msg, :id => "flash_#{name}", :class => name
@@ -44,17 +45,23 @@
       #pagination-container.deteached
         = yield(:pagination)
       #footer.deteached
-        %div.span-6.first
+        .span-6.first
           %h3.prepend-1= Faker::Lorem.words(2).join(" ")
           %ul
             -3.times do
               %li= Faker::Lorem.words(1)[0]
-        -3.times do |i|
-          %div{:class=>["span-6", "#{i==2 ? 'last' : ''}"]}
+        -2.times do |i|
+          %div.span-6
             %h3.prepend-1= Faker::Lorem.words(2).join(" ")
             %ul
               -3.times do
                 %li= Faker::Lorem.words(1)[0]
+        %div.span-6.last
+          %h3.prepend-1 Latest Issues
+          %ul
+            - Issue.criteria.order_by([:created_at, :desc]).limit(5).each do |issue|
+              %li
+                =link_to_show_wishes issue
         %hr
         #branding.span-11.push-1.first
           brought to you by amazing team from 
