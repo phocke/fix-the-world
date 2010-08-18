@@ -1,7 +1,18 @@
 require File.expand_path('../boot', __FILE__)
+require ‘uri’
 
-require 'rails/all'
-require 'mongoid/railtie'
+if ENV[“MONGOHQ_URL”]
+  mongo_uri = URI.parse(ENV[“MONGOHQ_URL”])
+  ENV[‘MONGOID_HOST’] = mongo_uri.host
+  ENV[‘MONGOID_PORT’] = mongo_uri.port.to_s
+  ENV[“MONGOID_USERNAME”] = mongo_uri.user
+  ENV[‘MONGOID_PASSWORD’] = mongo_uri.password
+  ENV[‘MONGOID_DATABASE’] = mongo_uri.path.gsub(“/”, “”)
+end
+require "action_controller/railtie"
+require "action_mailer/railtie"
+require "active_resource/railtie"
+#require 'mongoid/railtie'
 
 # If you have a Gemfile, require the gems listed there, including any gems
 # you've limited to :test, :development, or :production.
@@ -34,7 +45,7 @@ module TestApp
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
-  #config.frameworks -= [ :active_record ]
+   #config.frameworks -= [ :active_record ]
 
     # Configure generators values. Many other options are available, be sure to check the documentation.
     config.generators do |g|

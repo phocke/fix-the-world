@@ -1,21 +1,19 @@
 source 'http://gemcutter.org'
 
-gem "rails",    "3.0.0.beta4"
-gem "bson", "1.0.1"
-#gem "bson_ext", "1.0" unless RUBY_VERSION == "1.8.7"
-gem "mongoid",  "2.0.0.beta6", :git => "git://github.com/durran/mongoid.git"
-gem "haml",     "3.0.0.rc.2"
-gem "compass",  "0.10.0.rc4"
+gem "rails",    "3.0.0.rc"
+gem "bson", "1.0.4"
+gem "bson_ext"
+gem "mongoid",  "2.0.0.beta.16", :git => "git://github.com/durran/mongoid.git"
+gem "haml"
+gem "compass"
 gem "compass-colors"
 gem "inherited_resources"
-gem "ruby-mysql"
-#gem "sqlite3-ruby"
+#gem "ruby-mysql"
 gem "warden"
 gem "rails_warden"
 gem "cancan"
 gem "will_paginate"
 gem 'subdomain-fu', :git => "git://github.com/nhowell/subdomain-fu.git"
-#gem "force_encoding", :git => "git://github.com/qoobaa/force_encoding.git"
 gem 'unicorn'
 
 group :test do
