@@ -71,6 +71,7 @@ GEM
     activesupport (3.0.0.rc)
     arel (0.4.0)
       activesupport (>= 3.0.0.beta)
+    bcrypt-ruby (2.1.2)
     bson (1.0.4)
     bson_ext (1.0.4)
     builder (2.1.2)
@@ -94,6 +95,9 @@ GEM
       term-ansicolor (~> 1.0.4)
     culerity (0.2.10)
     database_cleaner (0.5.2)
+    devise (1.1.1)
+      bcrypt-ruby (~> 2.1.2)
+      warden (~> 0.10.7)
     diff-lcs (1.1.2)
     erubis (2.6.6)
       abstract (>= 1.0.0)
@@ -131,8 +135,6 @@ GEM
       activesupport (= 3.0.0.rc)
       bundler (>= 1.0.0.rc.1)
       railties (= 3.0.0.rc)
-    rails_warden (0.5.2)
-      warden
     railties (3.0.0.rc)
       actionpack (= 3.0.0.rc)
       activesupport (= 3.0.0.rc)
@@ -185,6 +187,7 @@ DEPENDENCIES
   compass-colors
   cucumber-rails!
   database_cleaner
+  devise (= 1.1.1)
   factory_girl!
   faker
   gherkin
@@ -193,7 +196,6 @@ DEPENDENCIES
   mongoid (= 2.0.0.beta.16)!
   pickle!
   rails (= 3.0.0.rc)
-  rails_warden
   rspec-rails (= 2.0.0.beta.8)
   subdomain-fu!
   test-unit

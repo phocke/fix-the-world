@@ -42,17 +42,17 @@ module TestApp
     # Configure generators values. Many other options are available, be sure to check the documentation.
     config.generators do |g|
       g.orm             :mongoid
-    #   g.template_engine :erb
-    #   g.test_framework  :test_unit, :fixture => true
+      g.template_engine :haml
+      #g.test_framework  :test_unit, :fixture => true
     end
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters << :password
 
-    require "lib/no_www"
-    config.middleware.use NoWWW
+    #require "lib/no_www"
+    #config.middleware.use NoWWW
 
-    require "lib/to_permalink"
-    require "lib/prepend"
+    #require "lib/to_permalink"
+    #require "lib/prepend"
   end
 end

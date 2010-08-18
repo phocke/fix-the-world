@@ -16,10 +16,5 @@ TestApp::Application.configure do
   config.active_support.deprecation        = :log
   # Don't care if the mailer can't send
   config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 end
-
-Rails.application.config.session_store :cookie_store, {
-  :key => 'app_session',
-  :domain => '.sie-naprawia.pl' 
-}
-
