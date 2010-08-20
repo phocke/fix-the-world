@@ -23,6 +23,6 @@ class Issue
   end
 
   def add_host_entry
-    File.prepend('/etc/hosts', "127.0.0.1  #{self.permalink}.#{$HOST_NAME}\n")
+    #File.prepend('/etc/hosts', "127.0.0.1  #{self.permalink}.#{$HOST_NAME}\n")
   end
 end

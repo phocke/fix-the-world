@@ -17,15 +17,7 @@ module ApplicationHelper
   end
 
   def vote_char(wish)
-    if current_user && wish.voted_by?(current_user)
-      "-"
-    else
-      "+"
-    end
+    current_user && wish.voted_by?(current_user) ? "-" : "+"
   end
 
-  def url_with_subdomain(wish)
-    polymorphic_url(wish, :subdomain => wish.issue.permalink)
-  end
-  
 end

@@ -21,6 +21,6 @@
 </p>
 
 
-<%= link_to 'Edit', edit_wish_path(@wish, :subdomain => @wish.issue.permalink) %> |
+<%- if can?(:edit, @wish) %><%= link_to 'Edit wish', edit_wish_path(@wish, :subdomain => @wish.issue.permalink) %><%- end %>
 <%= link_to 'Back', wishes_path %>
-<%= link_to 'Destroy', url_with_subdomain(@wish), :confirm => 'Are you sure?', :method => :delete %>
+<%- if can?(:destroy, @wish) %><%= link_to 'Destroy wish', wish_url_with_subdomain(@wish), :confirm => 'Are you sure?', :method => :delete %><%- end %>

@@ -4,6 +4,7 @@ require 'uri'
 require "action_controller/railtie"
 require "action_mailer/railtie"
 require "active_resource/railtie"
+#require "active_record/railtie"
 require 'mongoid/railtie'
 
 # If you have a Gemfile, require the gems listed there, including any gems
@@ -49,10 +50,10 @@ module TestApp
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters << :password
 
-    #require "lib/no_www"
-    #config.middleware.use NoWWW
+    require "no_www"
+    config.middleware.use NoWWW
 
-    #require "lib/to_permalink"
-    #require "lib/prepend"
+    require "to_permalink"
+    require "prepend"
   end
 end

@@ -1,6 +1,6 @@
 Before do
-  #host! "example.com"
   Capybara.default_host = "example.com"
+  DatabaseCleaner.clean
 end
 
 After do

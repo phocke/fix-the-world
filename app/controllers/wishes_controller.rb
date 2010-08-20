@@ -58,15 +58,14 @@ public
   
   def destroy
     @wish.destroy
-    flash[:success] = "Wish destroyed"
+    flash[:success] = "Wish was successfully destroyed."
     redirect_to wishes_path
   end
 
   def add_vote
-    @wish = Wish.find(params[:id])
     vote = @wish.votes.build(:user => current_user)
 
-    if @vote.save
+    if vote.save
       flash[:success] = "Successfully added vote."
     else
       flash[:error] = "Don't cheat!"

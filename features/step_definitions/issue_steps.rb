@@ -5,9 +5,8 @@ end
 
 When /^I delete the issue named "(.+)"$/ do |name|
   issue = Issue.find(:first, :conditions => {:name => name})
-  visit issue_path(issue)
-  Then %{I should see "#{name}"}
-  When %{I follow "Destroy"}
+  visit issue_url_with_subdomain(issue)
+  When %{I follow "Destroy issue"}
 end
 
 When /^I edit the issue named "(.+)"$/ do |name|

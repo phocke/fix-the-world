@@ -1,20 +1,15 @@
 class IssuesController < ApplicationController
-  before_filter :find_issue
+  before_filter :find_issue, :only => [:edit, :update, :destroy]
   load_and_authorize_resource
 
 private
   def find_issue
-    @issue ||= Issue.find(:first, :conditions => {:permalink => params[:id]})
+    @issue = Issue.find(:first, :conditions => {:permalink => params[:id]})
   end
 
 public
   def index
     @issues = Issue.find(:all)
-  end
-
-  def show
-    #@issue = Issue.find(:first, :conditions => {:permalink => params[:id]})
-    render :action=>:index,  :controller=>:wishes, :permalink=>params[:id]
   end
 
   def new
@@ -26,32 +21,29 @@ public
 
     if @issue.save
       flash[:success] = "Issue was successfully created."
-      redirect_to @issue
+      redirect_to issue_url_with_subdomain(@issue)
     else
       render :action => "new"
     end
   end
 
   def edit
-    @issue = Issue.find(:first, :conditions => {:permalink => params[:id]})
   end
 
   def update
-    @issue = Issue.find(:first, :conditions => {:permalink => params[:id]})
     if @issue.update_attributes(params[:issue])
       flash[:succes] = "Issue was successfully updated."
-      redirect_to @issue
+      redirect_to issue_url_with_subdomain(@issue)
     else
-      render :Action => "edit"
+      render :action => "edit"
     end
   end
 
   def destroy
-    @issue = Issue.find(:first, :conditions => {:permalink => params[:id]})
     @issue.destroy
 
     flash[:notice] = "Issue was successfully deleted."
-    redirect_to root_path
+    redirect_to root_url(:subdomain => false)
   end
 
 end

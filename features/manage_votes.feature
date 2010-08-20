@@ -3,8 +3,7 @@ Feature: Manage votes
   I want to be able to add vote
 
   Scenario: Add vote
-    Given I have no users, wishes, votes
-    And the following users exist:
+    Given the following users exist:
       | email           |
       | bob@bob.com     |
       | admin@gmail.com |
@@ -17,10 +16,10 @@ Feature: Manage votes
     Then I should see "Successfully added vote"
     Then wish named "wish 1" should have 1 vote
     When I add vote for wish named "wish 1"
-    Then I should see "Don't cheat!"
+    Then I should see "what are u doin' bitch?"
     Then wish named "wish 1" should have 1 vote
 
-    Given I am on the signout page
+    Given I am on the destroy user session page
     Given I am signed in as "admin@gmail.com" with password "foobar"
     When I see the wish named "wish 1" 
     And I follow "+"

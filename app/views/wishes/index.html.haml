@@ -5,17 +5,17 @@
     .wish-stats.small.absolute
       %span.block rank: #{page_no + index}
       %span.block #{wish.votes.size} votes
-      -if current_user and !wish.voted_by?(current_user)
+      -if can? :add_vote, wish
         %span.block= link_to "vote+", add_vote_wish_path(wish)
     =link_to wish do
       %h3= wish.name
     %p= wish.content
-    -if current_user and current_user.admin?
-      = link_to 'Show', wish
+    = link_to 'Show', wish
+    - if can? :edit, wish
       = link_to 'Edit', edit_wish_path(wish)
+    - if can? :destroy, wish
       = link_to 'Destroy', wish, :confirm => 'Are you sure?', :method => :delete 
 -content_for :pagination do
   = will_paginate @wishes 
 
--#= link_to 'New Wish', new_issue_wish_path 
 = link_to 'New Wish', new_wish_path 

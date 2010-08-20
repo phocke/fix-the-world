@@ -19,7 +19,8 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
 
     if @user.save
-      redirect_to(@user, flash[:success] => 'Signed up succesfully. Check your email dude :)')
+      flash[:success] = 'Signed up successfully. Check your email dude :)'
+      redirect_to root_url
     else
       flash[:error] = "Not signed up."
       render :action => "new"

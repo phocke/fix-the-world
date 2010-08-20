@@ -2,10 +2,7 @@ Feature: Manage tags
   In order to see tagged wishes
   
   Background:
-    Given I have no wishes
-    And I have no issues
-    And I have no users
-    And  the following issues exist
+    Given the following issues exist
       | issue  | name   |
       | krakow | krakow |
       | warsaw | warsaw |

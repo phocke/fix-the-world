@@ -1,11 +1,11 @@
 When /^I see the wish named "([^\"]*)"$/ do |name|
-  wish = Wish.find(:first, :conditions => {:name => name})
-  visit wish_url(wish, :subdomain => wish.issue.permalink)
+  wish = Wish.first(:conditions => {:name => name})
+  visit wish_url_with_subdomain(wish)
 end
 
 When /^I delete the wish named "(.+)"$/ do |name|
   When %{I see the wish named "#{name}"}
-  When %{I follow "Destroy"}
+  When %{I follow "Destroy wish"}
 end
 
 When /^I create new wish for issue named "(.+)"$/ do |name|

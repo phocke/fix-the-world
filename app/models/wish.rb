@@ -15,10 +15,10 @@ class Wish
   
   before_save :set_permalink
   after_save :save_tags
-  #named_scope :tagged_with, lambda { |tag| criteria.id(Tag.where(:name => tag).first.taggings.collect(&:wish_id)) }
+  named_scope :tagged_with, lambda { |tag| criteria.id(Tag.where(:name => tag).first.taggings.collect(&:wish_id)) }
 
   def voted_by?(user)
-    Vote.find(:first, :conditions => {:user_id => user.id, :wish_id => self.id}).nil?
+    !Vote.find(:first, :conditions => {:user_id => user.id, :wish_id => self.id}).nil?
   end
 
   def set_permalink

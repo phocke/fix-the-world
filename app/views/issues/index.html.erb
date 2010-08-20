@@ -1,4 +1,4 @@
-<h1>Listing issues</h1>
+<h1>Last issues</h1>
 
 <table>
   <tr>
@@ -6,17 +6,14 @@
     <th>Description</th>
     <th></th>
     <th></th>
-    <th></th>
   </tr>
 
 <% @issues.each do |issue| %>
   <tr>
-    <td><%= issue.name %></td>
+    <td><%= link_to issue.name, issue_url_with_subdomain(issue) %></td>
     <td><%= issue.description %></td>
-    <td><%= issue.permalink %></td>
-    <td><%= link_to_show_wishes(issue) %></td>
-    <td><%= link_to 'Edit', edit_issue_path(issue) %></td>
-    <td><%= link_to 'Destroy', issue, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><% if can?(:edit, issue) %><%= link_to 'Edit', edit_issue_path(issue) %><% end %></td>
+    <td><% if can?(:destroy, issue) %><%= link_to 'Destroy', issue, :confirm => 'Are you sure?', :method => :delete %><% end %></td>
   </tr>
 <% end %>
 </table>

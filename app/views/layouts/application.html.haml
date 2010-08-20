@@ -16,9 +16,10 @@
     = yield :javascripts
   %body.bp.showgrid
     #container
-      =debug current_user
+      -#=debug current_user
       -#=debug params
       -#=debug current_subdomain 
+      -#= session.inspect
       #header.large.deteached
         -if current_user
           logged in as a #{current_user.name}
@@ -29,19 +30,31 @@
           or
           =link_to "signup", new_user_registration_path
         %h1.span-14.first#logo 
-          %span>= current_subdomain.try(:capitalize)
-          %span#sienaprawia< .sie-naprawia
+          %span>= current_subdomain ? current_subdomain.capitalize + "." : ""
+          %span#sienaprawia< sie-naprawia.pl
         %ul.span-8.last#menu
           %li.first=link_to 'wishes', @issue
           %li=link_to 'fix sth else', new_issue_path
           %li.last=link_to 'about us', '#'
         %hr
-        %span#tagline.large= @issue.present? ? @issue.description : "this is very exciting site which will eventually fix the word"
+        %span#tagline.large
+          - if @issue.present? && !@issue.new_record? 
+            = "#{@issue.description} by #{@issue.user.name}" 
+            %p
+              %strong
+                Admin:
+            %p
+              - if can?(:edit, @issue) 
+                = link_to 'Edit issue', edit_issue_url(@issue, :subdomain => false)
+              - if can?(:destroy, @issue) 
+                = link_to 'Destroy issue', @issue, :confirm => 'Are you sure?', :method => :delete
+          - else 
+            this is very exciting site which will eventually fix the word
       #content.deteached
-        .notice#flash_notice= notice
-        .alert#flash_alert= alert
-        -#- flash.each do |name, msg|
-          -#= content_tag :div, msg, :id => "flash_#{name}", :class => name
+        -#.notice#flash_notice= notice
+        -#.alert#flash_alert= alert
+        - flash.each do |name, msg|
+          = content_tag :div, msg, :id => "flash_#{name}", :class => name
         - if show_title?
           %h1= yield(:title)
         = yield
@@ -64,7 +77,7 @@
           %ul
             - Issue.criteria.order_by([:created_at, :desc]).limit(5).each do |issue|
               %li
-                =link_to_show_wishes issue
+                = link_to issue.name, issue_url_with_subdomain(issue)
         %hr
         #branding.span-11.push-1.first
           brought to you by amazing team from 
