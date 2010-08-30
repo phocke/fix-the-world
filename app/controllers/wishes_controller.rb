@@ -8,12 +8,6 @@ private
     @issue ||= Issue.find(:first, :conditions => {:permalink => current_subdomain || params[:id]})
   end
 
-  #def set_subdomain
-    #if @issue and current_subdomain.blank?
-      #current_subdomain = @issue.permalink
-    #end
-  #end
-
   def find_wish
     @wish = Wish.find(:first, :conditions => {:permalink => params[:id]})
   end
@@ -22,6 +16,14 @@ public
   
   def index
     @wishes = @issue.wishes.paginate :page => params[:page], :per_page => 10
+  end
+
+  def in_progress
+    @wishes = @issue.wishes.in_progress.paginate :page => params[:page], :per_page => 10
+  end
+
+  def fixed
+    @wishes = @issue.wishes.fixed.paginate :page => params[:page], :per_page => 10
   end
 
   def show

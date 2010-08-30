@@ -3,10 +3,7 @@ Feature: Manage wishes
   I want to be able to create, edit, destroy wishes
   
   Background:
-    Given I have no wishes
-    And I have no issues
-    And I have no users
-    And the following users exist
+    Given the following users exist
       | user | name | email           | admin |
       | Ann  | Ann  | ann@ann.com     | false |
       | Fred | Fred | fred@gmail.com  | true  |
@@ -57,3 +54,19 @@ Feature: Manage wishes
     And I fill in "Name" with "edited by admin"
     And I press "Update Wish"
     Then I should see "Wish was successfully updated."
+
+  Scenario: Statuses
+    Given I am signed in as "ann@ann.com" with password "foobar"
+    When I edit the wish named "title 2"
+    And I select "In progress" from "Status"
+    And I press "Update Wish"
+    And I see fixed wishes for issue named "world"
+    Then I should not see "title 2"
+    When I see in progress wishes for issue named "world"
+    Then I should see "title 2"
+
+    When I edit the wish named "title 2"
+    And I select "Fixed" from "Status"
+    And I press "Update Wish"
+    And I see in progress wishes for issue named "world"
+    Then I should not see "title 2"

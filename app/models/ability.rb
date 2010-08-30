@@ -10,9 +10,9 @@ class Ability
       can :create, [Issue, Wish]
       can [:update, :destroy], [Issue, Wish], :user => user
       can :add_vote, Wish do |wish|
-        !wish.voted_by?(user)
+        wish.status == 0 && !wish.voted_by?(user)
       end
     end
-    can :read, [Wish, Issue]
+    can [:read, :fixed, :in_progress], [Wish, Issue]
   end
 end

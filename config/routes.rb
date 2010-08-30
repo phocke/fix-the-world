@@ -6,6 +6,8 @@ TestApp::Application.routes.draw do |map|
   constraints(:subdomain => /.+/) do
     resources :wishes, :path => "" do   
       get :add_vote, :on => :member   
+      get :in_progress
+      get :fixed
     end 
     root :to => "wishes#index"
   end

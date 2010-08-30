@@ -3,6 +3,16 @@ When /^I see the wish named "([^\"]*)"$/ do |name|
   visit wish_url_with_subdomain(wish)
 end
 
+When /^I see in progress wishes for issue named "([^\"]*)"$/ do |name|
+  issue = Issue.find(:first, :conditions => {:name => name})
+  visit in_progress_wish_url(:subdomain => issue.permalink)
+end
+
+When /^I see fixed wishes for issue named "([^\"]*)"$/ do |name|
+  issue = Issue.find(:first, :conditions => {:name => name})
+  visit fixed_wish_url(:subdomain => issue.permalink)
+end
+
 When /^I delete the wish named "(.+)"$/ do |name|
   When %{I see the wish named "#{name}"}
   When %{I follow "Destroy wish"}

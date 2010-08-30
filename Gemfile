@@ -1,9 +1,9 @@
 source 'http://gemcutter.org'
 
-gem "rails", "3.0.0.rc"
+gem "rails", "3.0.0.rc" #don't update - mongoid does not work!
 gem "bson", "1.0.4"
-gem "bson_ext"
-gem "mongoid", "2.0.0.beta.16", :git => "git://github.com/durran/mongoid.git"
+gem "bson_ext", "1.0.7"
+gem "mongoid", "2.0.0.beta.16"
 gem "haml"
 gem "compass"
 gem "compass-colors"

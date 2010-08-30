@@ -22,6 +22,12 @@
     <%= f.label :tag_list %><br />
     <%= f.text_field :tag_list %>
   </div>
+  <% unless @wish.new_record? -%>
+    <div class="field">
+      <%= f.label :status %><br />
+      <%= f.select :status, Wish::STATUSES.map {|status| [status[1].humanize, status[0]]}  %>
+    </div>
+  <% end -%>
   <div class="actions">
     <%= f.submit %>
   </div>

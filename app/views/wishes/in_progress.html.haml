@@ -1,0 +1,21 @@
+%h2.span-9.prepend-1.clear.title In progress 
+-page_no = @wishes.current_page
+-@wishes.each_with_index do |wish, index|
+  .wish.span-22.push-1.clear.large.relative
+    .wish-stats.small.absolute
+      %span.block rank: #{page_no + index}
+      %span.block #{wish.votes.size} votes
+      -if can? :add_vote, wish
+        %span.block= link_to "vote+", add_vote_wish_path(wish)
+    =link_to wish do
+      %h3= wish.name
+    %p= wish.content
+    = link_to 'Show', wish
+    - if can? :edit, wish
+      = link_to 'Edit', edit_wish_path(wish)
+    - if can? :destroy, wish
+      = link_to 'Destroy', wish, :confirm => 'Are you sure?', :method => :delete 
+-content_for :pagination do
+  = will_paginate @wishes 
+
+= link_to 'New Wish', new_wish_path 

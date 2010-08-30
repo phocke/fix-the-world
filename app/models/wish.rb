@@ -5,16 +5,18 @@ class Wish
   field :name, :type => String
   field :content, :type => String
   field :permalink, :type => String
+  field :status, :type => Integer, :default => 0
+
+  STATUSES = {0 => "being_considerated", 1 => "in_progress", 2 => "fixed"}
 
   belongs_to_related :user
   belongs_to_related :issue
   has_many_related :votes
-
   has_many_related :taggings
-  # has_many_related :tags, :through => :taggings IS WORKING
   
   before_save :set_permalink
   after_save :save_tags
+
   named_scope :tagged_with, lambda { |tag| criteria.id(Tag.where(:name => tag).first.taggings.collect(&:wish_id)) }
 
   def voted_by?(user)
@@ -29,8 +31,17 @@ class Wish
     permalink
   end
 
+  # change status, scopes
+  STATUSES.each_pair do |number, name|
+    define_method("#{name}!") do
+      self.status = number
+      self.save
+    end
+
+    named_scope name.to_sym, lambda { criteria.where(:status => number) }
+  end
+
   # TODO clean up, move to external module
-  
   def add_tag(name)
     tag = Tag.find_or_create_by(:name => name)
     self.taggings.build(:tag => tag).save

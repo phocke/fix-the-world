@@ -7,3 +7,4 @@ tmp/**/*
 *.swp
 *.swo
 features/tmp/**/*
+.DS_Store
