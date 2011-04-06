@@ -50,8 +50,8 @@ module TestApp
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters << :password
 
-    require "no_www"
-    config.middleware.use NoWWW
+    #require "no_www"
+    #config.middleware.use NoWWW
 
     require "to_permalink"
     require "prepend"
